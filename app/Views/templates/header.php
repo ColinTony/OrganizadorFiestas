@@ -43,13 +43,13 @@
                         <div class="sb-sidenav-menu-heading">PANEL DE CONTROL</div>
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon"><i class="fas fa-glass-cheers"></i></div>
-                            &nbsp; Fiestas
+                            &nbsp; Eventos
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="layout-static.html">Mis fiestas</a>
-                                <a class="nav-link" href="layout-sidenav-light.html">Crear fiesta</a>
+                                <a class="nav-link" href="/dashboard/eventos">Mis eventos</a>
+                                <a class="nav-link" href="/dashboard/nuevo_evento">Crear fiesta</a>
                             </nav>
                         </div>                        
                     </div>

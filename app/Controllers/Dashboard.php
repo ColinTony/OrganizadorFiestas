@@ -1,6 +1,7 @@
 <?php namespace App\Controllers;
 
 use App\Models\UsuarioModel;
+use App\Controllers\ManejoDB;
 
 class Dashboard extends BaseController
 {
@@ -103,7 +104,21 @@ class Dashboard extends BaseController
 		echo view('perfil');
 		echo view('templates/footer');
 	}
-
+	public function eventos()
+	{
+		$this->verEventos();
+	}
+	private function verEventos()
+	{
+		$model = new UsuarioModel();
+		$data['user'] = $model->where('idUsuario',session()->get('idUsuario'))->first();
+		$manejador = new ManejoDB();
+		$result = $manejador->getEventos($data['user']['idUsuario']);
+		$data['result'] = $result;
+		echo view('templates/header',$data);
+		echo view('eventos');
+		echo view('templates/footer');
+	}
 }
 
 ?>

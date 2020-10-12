@@ -61,7 +61,7 @@
                                 
                                 <div class="row">
                                     <div class="col-12 col-sm-4">
-                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
                                     </div>
                                     <div class="col-12 col-sm-8 text-right">
                                         <a class="btn btn-danger" href="/dashboard">Cancelar</a>

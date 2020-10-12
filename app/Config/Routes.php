@@ -31,11 +31,14 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index',['filter' => 'noauth']);
-$routes->match(['get','post'],'/dashboard/perfil', 'Dashboard::perfil',['filter' => 'auth']);
-$routes->get('/dashboard/cerrar', 'Home::cerrar');
 $routes->match(['get','post'],'/registro', 'Home::registro',['filter' => 'noauth']);
 $routes->match(['get','post'],'/login', 'Home::login',['filter' => 'noauth']);
+
+// DashBoard
+$routes->get('/dashboard/cerrar', 'Home::cerrar');
 $routes->get('dashboard','Dashboard::index',['filter' => 'auth']);
+$routes->match(['get','post'],'/dashboard/perfil', 'Dashboard::perfil',['filter' => 'auth']);
+$routes->get('/dashboard/eventos','Dashboard::eventos',['filter' => 'auth']);
 
 /**
  * --------------------------------------------------------------------
