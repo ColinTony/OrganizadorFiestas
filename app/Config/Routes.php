@@ -39,6 +39,7 @@ $routes->get('/dashboard/cerrar', 'Home::cerrar');
 $routes->get('dashboard','Dashboard::index',['filter' => 'auth']);
 $routes->match(['get','post'],'/dashboard/perfil', 'Dashboard::perfil',['filter' => 'auth']);
 $routes->get('/dashboard/eventos','Dashboard::eventos',['filter' => 'auth']);
+$routes->match(['get','post'],'/dashboard/newevento', 'Dashboard::crearEvento',['filter' => 'auth']);
 
 /**
  * --------------------------------------------------------------------

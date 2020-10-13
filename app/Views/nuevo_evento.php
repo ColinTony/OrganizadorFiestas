@@ -6,51 +6,50 @@
                 <div class="row">
                     <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 mt-5 pt-3 pb-3 bg-white from-wrapper">
                         <div class="container">
-                            <h3><?= $user['nombre'].' '.$user['apeP']?></h3>
+                            <h3><?= 'Nuevo evento de '.$user['nombre'].' '.$user['apeP']?></h3>
                             <hr>
                             <?php if(session()->get('exito')): ?>
                                     <div class="alert alert-success" role="alert">
                                         <?= session()->get('exito') ?>
                                     </div>
                             <?php endif; ?>
-                            <form class="needs-validation" action="/dashboard/perfil" method="post">
+                            <form class="needs-validation" action="/dashboard/newevento" method="post">
+                                <div class="form-row">
+                                    <input type="hidden" class="form-control" placeholder="Ej: Proyecto X" name="nombre" id="nombre"  value="<?=set_value("idUsuario",$user['idUsuario'])?>">
+                                    <div class="col">
+                                        <label for="nombre">Nombre del evento</label>
+                                        <input type="text" class="form-control" placeholder="Ej: Proyecto X" name="nombre" id="nombre"  value="<?=set_value("nombres")?>">
+                                    </div>
+                                    
+                                    <div class="col">
+                                        <label for='tipo'>Tipo de evento</label>
+                                        <select class="form-control" id='tipo'>
+                                            <option value="Graduacion">Graduación</option>
+                                            <option value="Boda">Boda</option>
+                                            <option value="Bautizo">Bautizo</option>
+                                            <option value="XV años">XV años</option>
+                                            <option value="Reunion familiar">Reunion familiar</option>
+                                            <option value="Reunion de negocios">Reunion de negocios</option>
+                                            <option value="otro">Otro</option>
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="form-row">
                                     <div class="col">
-                                        <label for="nombres">Nombre(s)</label>
-                                        <input type="text" class="form-control" placeholder="Nombre(s)" name="nombres" id="nombres"  value="<?=set_value("nombres",$user['nombre'])?>">
+                                        <label for="date">Fecha del evento</label>
+                                        <input type="date" class="form-control" name="date" id="date" placeholder="Correo electronico" value="<?= set_value("date") ?>" >
                                     </div>
-                                    <div class="col">
-                                        <label for="apeP">A.Paterno</label>
-                                        <input type="text" class="form-control" name="apeP" id="apeP" placeholder="Apellido paterno" value="<?=set_value("apeP",$user['apeP'])?>">
-                                    </div>
-                                    <div class="col">
-                                        <label for="apeM">A.Materno</label>
-                                        <input type="text" class="form-control" name="apeM" id="apeM" placeholder="Apellido materno" value="<?=set_value("apeM",$user['apeM'])?>">
+                                     <div class="col">
+                                        <label for='hora'>Hora del evento</label>
+                                        <input type="time" class="form-control" name="date" id="date" placeholder="Correo electronico" value="<?= set_value("date") ?>" >
                                     </div>
                                 </div>
                                 
                                 <div class="form-group">
-                                        <label for="tel">Telefono</label>
-                                        <input type="text" class="form-control" name="tel" id="tel" placeholder="55XXXXXXX" pattern="[0-9]{10}"  value="<?=set_value("tel",$user['tel'])?>">
-                                </div>
-                                <div class="form-row">
-                                    <div class="col">
-                                        <label for="email">Email</label>
-                                        <input type="email" class="form-control" name="email" id="email" placeholder="Correo electronico" value="<?= set_value("email",$user['correo']) ?>" >
-                                    </div>
-                                    <div class="col">
-                                        <label for="password">Contraseña</label>
-                                        <input type="password" class="form-control" name="password" placeholder="Contraseña" id="password" value="<?= set_value("password") ?>" >
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                        <label for="usuario">Usuario</label>
-                                        <input type="text" class="form-control" name="usuario" id="usuario" placeholder="Nombre de usuario" value="<?= set_value("usuario",$user['usuario']) ?>" >
-                                </div>
-                                <div class="form-group">
-                                        <label for="password_confirm">Confirmar contraseña</label>
+                                        <label for="password_confirm">Menu</label>
                                         <input type="password" class="form-control" name="password_confirm" id="password_confirm" placeholder="Confirmar contraseña" value="" >
                                 </div>
+                                
                                 <?php if(isset($validation)) : ?>
                                     <div class="col-12">
                                         <div class="alert alert-danger" role="alert">

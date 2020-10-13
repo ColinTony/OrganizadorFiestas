@@ -18,12 +18,17 @@ class ManejoDB
 		$this->result = null;
 	}
 
-	function getEventos($data)
+	public function getEventos($data)
 	{
 		$this->sql = "call consultarEventos(?)";
 		$sqlExc = $this->db->query($this->sql, $data);
 		$result = $sqlExc->getResultArray();
 		return $result;
+	}
+
+	public function nuevoEvento($evento)
+	{
+		
 	}
 }
 

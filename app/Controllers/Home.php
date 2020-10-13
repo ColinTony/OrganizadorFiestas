@@ -42,10 +42,11 @@ class Home extends BaseController
 					'min_length'=>'Tu apellido debe contener al menos 3 caracteres',
 					'max_length'=>'Tu apelllido no puede contener mas de 20 caracteres'
 				]],
-				'tel' => ['rules'=>'required|min_length[10]|max_length[10]|is_unique[usuarios.tel]','errors'=>[
+				'tel' => ['rules'=>'required|min_length[10]|max_length[10]|numeric|is_unique[usuarios.tel]','errors'=>[
 					'required'=>'Escribe un numero de telefono',
 					'min_length'=>'Escribe los 10 digitos de tu telefono',
 					'max_length'=>'Escribe los 10 digitos de tu telefono',
+					'numeric' => 'Escribe un numero valido (solo numeros)',
 					'is_unique'=>'El telefono ingresado ya esta registrado con otro usuario'
 				]],
 				'email' => ['rules'=>'required|min_length[6]|max_length[50]|valid_email|is_unique[usuarios.correo]','errors'=>[

@@ -30,10 +30,6 @@ include 'templates/module_head.php';
                             </div>
                         </div>
                         
-                        <div class="form-group">
-                                <label for="tel">Telefono</label>
-                                <input type="text" class="form-control" name="tel" id="tel" placeholder="5555555555"  value="<?=set_value("tel")?>">
-                        </div>
                         <div class="form-row">
                             <div class="col">
                                 <label for="email">Email</label>
@@ -43,6 +39,10 @@ include 'templates/module_head.php';
                                 <label for="password">Contraseña</label>
                                 <input type="password" class="form-control" name="password" placeholder="Contraseña" id="password" value="<?= set_value("password") ?>" >
                             </div>
+                        </div>
+                         <div class="form-group">
+                                <label for="tel">Telefono</label>
+                                <input type="text" class="form-control" placeholder="55XXXXXXXX" name="tel" id="tel" pattern="[0-9]{10}" minlength="10" maxlength="10" value="<?=set_value("tel")?>">
                         </div>
                         <div class="form-group">
                                 <label for="usuario">Usuario</label>
@@ -72,6 +72,7 @@ include 'templates/module_head.php';
     <?php
     include 'templates/module_scripts.php';
     ?>
+    <script />
 </body>
 
 </html>

@@ -49,7 +49,7 @@
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="/dashboard/eventos">Mis eventos</a>
-                                <a class="nav-link" href="/dashboard/nuevo_evento">Crear fiesta</a>
+                                <a class="nav-link" href="/dashboard/nuevo_evento">Crear evento</a>
                             </nav>
                         </div>                        
                     </div>

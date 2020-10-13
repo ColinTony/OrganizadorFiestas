@@ -6,7 +6,7 @@ class EventoModel extends Model
 {
     protected $table = 'eventos';
     protected $primaryKey = 'idEvento';
-    protected $allowedFields = ['update_at','idUsuario','tipo','fecha','hora'];
+    protected $allowedFields = ['update_at','idUsuario','tipo','nombre','fecha','hora'];
     protected $beforeInsert=['beforeInsert'];
     protected $beforeUpdate=['beforeUpdate'];
 
