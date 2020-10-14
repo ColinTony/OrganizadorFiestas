@@ -15,6 +15,10 @@
     <link href="../css/styles.css" rel="stylesheet" />
     <link href="../css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="../js/all.min.js" crossorigin="anonymous"></script>
+    <script src="../js/jquery-3.5.1.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/miJavascript.js"></script>
+
 </head>
 
 <body class="sb-nav-fixed">

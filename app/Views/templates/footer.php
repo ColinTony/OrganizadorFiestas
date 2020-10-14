@@ -12,8 +12,8 @@
     </footer>
 </div>
 </div>
-<script src="../js/jquery-3.5.1.min.js"></script>
-<script src="../js/bootstrap.bundle.min.js"></script>
+
+<script type="../js/bootstrap"></script>
 <script src="../js/scripts.js"></script>
 <script src="../js/jquery.dataTables.min.js"></script>
 <script src="../js/dataTables.bootstrap4.min.js"></script>
