@@ -31,7 +31,7 @@
                                         <?= session()->get('exito') ?>
                                     </div>
                             <?php endif; ?>
-                            <form class="needs-validation" action="/dashboard/newevento" method="post">
+                            <form class="needs-validation" action="/dashboard/nuevo_evento" method="post">
                                 <div class="form-row">
                                     <input type="hidden" class="form-control" placeholder="Ej: Proyecto X" name="idUsuario" id="idUsuario"  value="<?=set_value("idUsuario",$user['idUsuario'])?>">
                                     <div class="col">
@@ -65,7 +65,7 @@
                                 
                                 <div class="form-group">
                                         <label for='menu'>Tipo de evento</label>
-                                        <select class="form-control" id='menu' name ="menu" disabled="true">
+                                        <select class="form-control" id='menu' name ="menu" value="<?= set_value("menu") ?>" disabled="true">
                                             
                                         </select>
                                 </div>

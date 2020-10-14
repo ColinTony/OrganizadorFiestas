@@ -1,6 +1,7 @@
 <?php namespace App\Controllers;
 
 use App\Models\UsuarioModel;
+use App\Models\EventoModel;
 use App\Controllers\ManejoDB;
 
 class Dashboard extends BaseController
@@ -132,52 +133,28 @@ class Dashboard extends BaseController
 			// validamos los datos
 			$reglas =
 			[
+				'idUsuario' =>['rules' => 'required'],
 				'nombre' => ['rules' =>'required|min_length[3]|max_length[15]','errors'=>[
 					'required' => 'El campo nombre no puede estar vacio',
 					'min_length'=>'El campo nombre no puede tener menos de 3 caracteres',
 					'max_length' =>'El campo nombre no puede tener mas de 20 caracteres'
 				]],
-				'apeP' => ['rules'=>'required|min_length[3]|max_length[20]','errors'=>[
+				'tipo' => ['rules'=>'required','errors'=>[
 					'required'=>'No puedes dejar en blanco tu apellido',
 					'min_length'=>'Tu apellido debe contener al menos 3 caracteres',
 					'max_length'=>'Tu apelllido no puede contener mas de 20 caracteres'
 				]],
-				'apeM' => ['rules'=>'required|min_length[3]|max_length[20]','errors'=>[
+				'date' => ['rules'=>'required','errors'=>[
 					'required'=>'No puedes dejar en blanco tu apellido',
-					'min_length'=>'Tu apellido debe contener al menos 3 caracteres',
-					'max_length'=>'Tu apelllido no puede contener mas de 20 caracteres'
+					'data_valid'=>'Debes elegir una fecha valida'
 				]],
-				'tel' => ['rules'=>'required|min_length[10]|max_length[10]','errors'=>[
+				'hora' => ['rules'=>'required','errors'=>[
 					'required'=>'Escribe un numero de telefono',
-					'min_length'=>'Escribe los 10 digitos de tu telefono',
-					'max_length'=>'Escribe los 10 digitos de tu telefono'
 				]],
-				'email' => ['rules'=>'required|min_length[6]|max_length[50]|valid_email','errors'=>[
-					'required'=>'Escribe un correo electronico',
-					'min_length'=>'Tu correo electronico no es valido debe contener mas de 6 caracteres',
-					'max_length'=>'Escribe un correo electronico valido',
-					'valid_email'=>'Escribe un correo electronico valido',
-					'is_unique'=>'El correo ingresado ya se encuentra registrado con otro usuario'
-				]],
-				'usuario' => ['rules'=>'required|min_length[3]|max_length[20]','errors'=>[
-					'required'=>'Escribe un nombre de usuario',
-					'min_length'=>'Tu nombre de usuario debe tener al menos 3 caracteres',
-					'max_length'=>'Tu nombre de usuario no debe exceder los 20 caracteres'
+				'menu' => ['rules'=>'required','errors'=>[
+					'required'=>'Escribe un correo electronico'
 				]]
 			];
-
-			if($this->request->getPost('password') != '')
-			{
-				$reglas['password'] = ['rules'=>'required|min_length[8]|max_length[50]','errors'=>[
-					'required'=>'Escribe una cotraseña de 8 o más caracteres',
-					'min_length'=>'Tu contraseña debe tener al menos 8 caracteres',
-					'max_length'=>'Tu contraseña no debe pasar de los 50 caracteres',
-				]];
-				$reglas['password_confirm'] = ['rules'=>'matches[password]|required','errors'=>[
-					'required'=>'Escribe una cotraseña de 8 o más caracteres',
-					'matches' => 'Las contraseñas no coinciden'
-				]];
-			}
 			if(!$this->validate($reglas))
 			{
 				$data['validation'] = $this->validator;
@@ -185,32 +162,28 @@ class Dashboard extends BaseController
 			else
 			{
 				// guardamos el usuarios en la base de datos
-				$model = new UsuarioModel();
+				$model = new EventoModel();
 				$newData=[
-					'idUsuario' => session()->get('idUsuario'),
-					'nombre' => $this->request->getPost('nombres'),
-					'apeP' => $this->request->getPost('apeP'),
-					'apeM' => $this->request->getPost('apeM'),
-					'tel' => $this->request->getPost('tel'),
-					'correo' => $this->request->getPost('email'),
-					'usuario' => $this->request->getPost('usuario')
+					'idUsuario' => $this->request->getVar('idUsuario'),
+					'nombre' => $this->request->getVar('nombre'),
+					'tipo' => $this->request->getVar('tipo'),
+					'fecha' => $this->request->getVar('date'),
+					'hora' => $this->request->getVar('hora'),
+					'menu' => $this->request->getVar('menu')
 				];
-				if($this->request->getPost('password') != '')
-				{
-					$newData['pass'] = $this->request->getPost('password');
-				}
 				$model->save($newData);
 				/// creando la sesion
-				session()->setFlashdata('exito','Datos actualizados');
-				return redirect()->to('/dashboard/perfil');
+				return redirect()->to('/dashboard');
 			}
 		}
-
 		$data['user'] = $model->where('idUsuario',session()->get('idUsuario'))->first();
 		echo view('templates/header',$data);
 		echo view('nuevo_evento');
 		echo view('templates/footer');
 	}
+
+		
+	
 }
 
 ?>

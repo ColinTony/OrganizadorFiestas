@@ -3,9 +3,12 @@ $(document).ready(function(){
 	{
 		var horaSelect = $("#hora").val();
 		var hora = horaSelect[0]+horaSelect[1];
-		var desayunos = "<option>Desayuno de la casa</option>\n<option>Desayuno mexicano</option>\n<option>Desayuno saludable</option>";
-		var comidas = "<option>Comida de la casa</option>\n<option>Comida mexicana</option>\n<option>Comida vegana</option>";
-		var cenas = "<option>Cena especial</option>\n<option>Cena mexicana</option>\n<option>Cena saludable</option>";
+		var desayunos = "<option value='Desayuno de la casa'>Desayuno de la casa</option>\n<option value='Desayuno mexicano'>Desayuno mexicano</option>"+
+		"\n<option value='Desayuno saludable'>Desayuno saludable</option>";
+		var comidas = "<option value='Comida de la casa'>Comida de la casa</option>\n<option value='Comida mexicana'>Comida mexicana</option>"
+		+"\n<option value='Comida vegana'>Comida vegana</option>";
+		var cenas = "<option value='Cena especial'>Cena especial</option>\n<option value='Cena mexicana'>Cena mexicana</option>"+
+		"\n<option value='Cena saludable'>Cena saludable</option>";
 		hora = parseInt(hora);
 
 		$("#menu").empty();
