@@ -182,8 +182,96 @@ class Dashboard extends BaseController
 		echo view('templates/footer');
 	}
 
-		
-	
+	public function verEvento($id)
+	{
+
+		$model = new UsuarioModel();
+		$evento = new EventoModel();
+		$manejador = new ManejoDB();
+
+		$data['user'] = $model->where('idUsuario',session()->get('idUsuario'))->first();
+		$result = $manejador->getEventosEsp($data['user']['idUsuario'],$id);
+		$data['evento'] = $result;
+
+		echo view('templates/header',$data);
+		echo view('ver_evento');
+		echo view('templates/footer');
+	}
+	public function modificarEvento($id)
+	{
+		$model = new UsuarioModel();
+		$evento = new EventoModel();
+		$manejador = new ManejoDB();
+		helper(['form']);
+		$data['user'] = $model->where('idUsuario',session()->get('idUsuario'))->first();
+		$result = $manejador->getEventosEsp($data['user']['idUsuario'],$id);
+		$data['evento'] = $result;
+
+		echo view('templates/header',$data);
+		echo view('editar_evento');
+		echo view('templates/footer');
+	}
+	public function modificarEv()
+	{
+		$data = [];
+		$model = new UsuarioModel();
+		helper(['form']);
+		if($this->request->getMethod() == 'post')
+		{
+			// registro en la base de datos
+			// validamos los datos
+			$reglas =
+			[
+				'idUsuario' =>['rules' => 'required'],
+				'nombre' => ['rules' =>'required|min_length[3]|max_length[15]','errors'=>[
+					'required' => 'El campo nombre no puede estar vacio',
+					'min_length'=>'El campo nombre no puede tener menos de 3 caracteres',
+					'max_length' =>'El campo nombre no puede tener mas de 20 caracteres'
+				]],
+				'tipo' => ['rules'=>'required','errors'=>[
+					'required'=>'No puedes dejar en blanco tu apellido',
+					'min_length'=>'Tu apellido debe contener al menos 3 caracteres',
+					'max_length'=>'Tu apelllido no puede contener mas de 20 caracteres'
+				]],
+				'date' => ['rules'=>'required','errors'=>[
+					'required'=>'No puedes dejar en blanco tu apellido',
+					'data_valid'=>'Debes elegir una fecha valida'
+				]],
+				'hora' => ['rules'=>'required','errors'=>[
+					'required'=>'Escribe un numero de telefono',
+				]],
+				'menu' => ['rules'=>'required','errors'=>[
+					'required'=>'Escribe un correo electronico'
+				]]
+			];
+			if(!$this->validate($reglas))
+			{
+				$data['validation'] = $this->validator;
+			}
+			else
+			{
+				// guardamos el usuarios en la base de datos
+				$manejador = new ManejoDB();
+				$model = new EventoModel();
+				$newData=[
+					'idEvento' => $this->request->getVar('idEvento'),
+					'idUsuario' => $this->request->getVar('idUsuario'),
+					'nombre' => $this->request->getVar('nombre'),
+					'tipo' => $this->request->getVar('tipo'),
+					'fecha' => $this->request->getVar('date'),
+					'hora' => $this->request->getVar('hora'),
+					'menu' => $this->request->getVar('menu')
+				];
+				$result = $manejador->modificarEv($newData);
+				/// creando la sesion
+				return redirect()->to('/dashboard/eventos');
+			}
+		}
+		$data['user'] = $model->where('idUsuario',session()->get('idUsuario'))->first();
+		echo view('templates/header',$data);
+		echo view('editar_evento');
+		echo view('templates/footer');
+	}
 }
 
 ?>

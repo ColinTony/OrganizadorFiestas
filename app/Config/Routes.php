@@ -40,7 +40,9 @@ $routes->get('dashboard','Dashboard::index',['filter' => 'auth']);
 $routes->match(['get','post'],'/dashboard/perfil', 'Dashboard::perfil',['filter' => 'auth']);
 $routes->get('/dashboard/eventos','Dashboard::eventos',['filter' => 'auth']);
 $routes->match(['get','post'],'/dashboard/newevento', 'Dashboard::crearEvento',['filter' => 'auth']);
-
+$routes->add('/dashboard/eventos/ver/(:num)','Dashboard::verEvento/$1',['filter' => 'auth']);
+$routes->add('/dashboard/eventos/modificar/(:num)','Dashboard::modificarEvento/$1',['filter' => 'auth']);
+$routes->post('/dashboard/modificar_evento','Dashboard::modificarEv',['filter' => 'auth']);
 /**
  * --------------------------------------------------------------------
  * Additional Routing

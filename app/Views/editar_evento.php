@@ -24,24 +24,26 @@
                 <div class="row">
                     <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 mt-5 pt-3 pb-3 bg-white from-wrapper">
                         <div class="container">
-                            <h3><?= 'Nuevo evento de '.$user['nombre'].' '.$user['apeP']?></h3>
+                            <h3><?= 'Modificando evento folio: '.$evento[0]['idEvento']?></h3>
                             <hr>
                             <?php if(session()->get('exito')): ?>
                                     <div class="alert alert-success" role="alert">
                                         <?= session()->get('exito') ?>
                                     </div>
                             <?php endif; ?>
-                            <form class="needs-validation" action="/dashboard/nuevo_evento" method="post">
+                            <form class="needs-validation" action="/dashboard/modificar_evento" method="post">
                                 <div class="form-row">
                                     <input type="hidden" class="form-control" placeholder="Ej: Proyecto X" name="idUsuario" id="idUsuario"  value="<?=set_value("idUsuario",$user['idUsuario'])?>">
+                                    <input type="hidden" class="form-control" placeholder="Ej: Proyecto X" name="idEvento" id="idEvento"  value="<?=set_value("idEvento",$evento['0']['idEvento'])?>">
                                     <div class="col">
                                         <label for="nombre">Nombre del evento</label>
-                                        <input type="text" class="form-control" placeholder="Ej: Proyecto X" name="nombre" id="nombre"  value="<?=set_value("nombres")?>">
+                                        <input type="text" class="form-control" placeholder="Ej: Proyecto X" name="nombre" id="nombre"  value="<?=set_value("nombres",$evento['0']['nombre'])?>">
                                     </div>
                                     
                                     <div class="col">
                                         <label for='tipo'>Tipo de evento</label>
-                                        <select class="form-control" id='tipo' name="tipo" value="<?=set_value("tipo")?>">
+                                        <select class="form-control" id='tipo' name="tipo" value="<?=set_value("tipo",$evento['0']['tipo'])?>">
+                                            <option value="<?=$evento['0']['tipo']?>"><?= $evento[0]['tipo']?></option>
                                             <option value="Graduacion">Graduación</option>
                                             <option value="Boda">Boda</option>
                                             <option value="Bautizo">Bautizo</option>
@@ -55,18 +57,19 @@
                                 <div class="form-row">
                                     <div class="col">
                                         <label for="date">Fecha del evento</label>
-                                        <input type="date" class="form-control" name="date" id="date" min="<?= date("Y-m-d") ?>" placeholder="Correo electronico" value="<?= set_value("date") ?>" >
+                                        <input type="date" class="form-control" name="date" id="date" 
+                                        min="<?= date("Y-m-d") ?>" placeholder="Correo electronico" value="<?= set_value("date",$evento['0']['fecha']) ?>" >
                                     </div>
                                      <div class="col">
                                         <label for='hora'>Hora (9:00:00hr - 24:00:00hr)</label>
-                                        <input type="time" class="form-control" min="9:00:00" name="hora" id="hora" placeholder="Correo electronico" value="<?= set_value("hora") ?>" >
+                                        <input type="time" class="form-control" min="9:00:00" name="hora" id="hora" value="<?= set_value("hora",$evento['0']['hora']) ?>" >
                                     </div>
                                 </div>
                                 
                                 <div class="form-group">
                                         <label for='menu'>Tipo de menu</label>
                                         <select class="form-control" id='menu' name ="menu" value="<?= set_value("menu") ?>" disabled="true">
-                                            
+                                            <option value="<?= $evento['0']['menu']?>"><?= $evento['0']['menu'] ?></option>
                                         </select>
                                 </div>
                                 
@@ -80,7 +83,7 @@
                                 
                                 <div class="row">
                                     <div class="col-12 col-sm-4">
-                                        <button type="submit" id="crear" name="crear" disabled="true" class="btn btn-primary">Crear evento</button>
+                                        <button type="submit" id="crear" name="crear" disabled="true" class="btn btn-primary">Guardar cambios</button>
                                     </div>
                                     <div class="col-12 col-sm-8 text-right">
                                         <a class="btn btn-danger" href="/dashboard">Cancelar</a>

@@ -13,25 +13,29 @@
                         <table class="table table-bordered" id="dataTable" cellspacing="0">
                             <thead>
                                 <tr>
+                                    <th>Folio</th>
                                     <th>Evento</th>
                                     <th>Tipo</th>
                                     <th>Fecha</th>
                                     <th>Hora</th>
                                     <th>Ver</th>
                                     <th>Modificar</th>
-                                    <th>Eliminar</th>
+                                    <th>Invitados</th>
+                                    <th>Organizar</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php foreach ($result as $row): ?>
                                     <tr>
+                                        <td id="idEvento"><?php echo $row['idEvento']?></td>
                                         <td><?php echo $row['nombre']?></td>
                                         <td><?php echo $row['tipo']?></td>
                                         <td><?php echo $row['fecha']?></td>
                                         <td><?php echo $row['hora']?></td>
-                                        <td><a href="/"><button type="button" class="btn btn-outline-success">Ver evento</button></a></td>
-                                        <td><a href="/"><button type="button" class="btn btn-outline-primary">Modificar</button></a></td>
-                                        <td><a href="/"><button type="button" class="btn btn-outline-danger">Eliminar</button></a></td>
+                                        <td><a href="<?='/dashboard/eventos/ver/'.$row['idEvento']?>"><button type="button" id="valor" class="btn btn-outline-success">Ver evento</button></a></td>
+                                        <td><a href="<?='/dashboard/eventos/modificar/'.$row['idEvento']?>"><button type="button" class="btn btn-outline-primary">Modificar</button></a></td>
+                                        <td><a href="<?='/dashboard/eventos/invitados/'.$row['idEvento']?>"><button type="button" class="btn btn-outline-warning">Invitados</button></a></td>
+                                        <td><a href="<?='/dashboard/eventos/organizar/'.$row['idEvento']?>"><button type="button" class="btn btn-outline-secondary">Organizar</button></a></td>
                                     </tr>
                                 <?php endforeach; ?> 
                             </tbody>

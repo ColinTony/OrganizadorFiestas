@@ -26,9 +26,19 @@ class ManejoDB
 		return $result;
 	}
 
-	public function nuevoEvento($evento)
+	public function getEventosEsp($usuario,$evento)
 	{
-		
+		$this->sql = "call consultarEventoEsp(?,?)";
+		$sqlExc = $this->db->query($this->sql,[$usuario,$evento]);
+		$result = $sqlExc->getResultArray();
+		return $result;	
+	}
+	public function modificarEv($evento)
+	{
+		$this->sql = "call modificarEvento(?,?,?,?,?,?,?)";
+		$sqlExc = $this->db->query($this->sql,[$evento['idUsuario'],$evento['tipo'],$evento['nombre'],$evento['fecha'],$evento['hora'],$evento['menu'],$evento['idEvento']]);
+		$result = $sqlExc->getResultArray();
+		return $result;	
 	}
 }
 
