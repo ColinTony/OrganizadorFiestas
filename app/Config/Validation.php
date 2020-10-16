@@ -18,6 +18,7 @@ class Validation
 		\CodeIgniter\Validation\FileRules::class,
 		\CodeIgniter\Validation\CreditCardRules::class,
 		\App\Validation\UsuarioRules::class,
+		\App\Validation\InvitadoRules::class,
 	];
 
 	/**

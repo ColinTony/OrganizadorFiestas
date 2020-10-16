@@ -13,23 +13,23 @@
                         <table class="table table-bordered" id="dataTable" cellspacing="0">
                             <thead>
                                 <tr>
+                                    <th>Mesa</th>
                                     <th>Nombre</th>
                                     <th>Apellido P.</th>
                                     <th>Apellido M.</th>
                                     <th>Correo</th>
-                                    <th>Mesa</th>
                                     <th>Eliminar</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php foreach ($result as $row): ?>
                                     <tr>
+                                        <td><?php echo $row['numMesa']?></td>
                                         <td><?php echo $row['nombre']?></td>
                                         <td><?php echo $row['apeP']?></td>
                                         <td><?php echo $row['apeM']?></td>
                                         <td><?php echo $row['correo']?></td>
-                                        <td><?php echo $row['mesa']?></td>
-                                        <td><a href="<?='/dashboard/invitados/elim/'.$row['idInvitado']?>"><button type="button" id="valor" class="btn btn-outline-success">Eliminar</button></a></td>
+                                        <td><a href="<?='/dashboard/invitados/elim/'.$row['idInvitado']?>"><button type="button" id="valor" class="btn btn-outline-danger">Eliminar</button></a></td>
                                     </tr>
                                 <?php endforeach; ?> 
                             </tbody>
@@ -62,18 +62,18 @@
                             </div>
                             <div class="col">
                                     <label for="mesa">Mesa</label>
-                                    <select id="mesa" class="form-control"> value="<?= set_value("mesa")?>">
+                                    <select id="mesa" id='mesa' name="mesa" class="form-control" value="<?= set_value("mesa")?>">
                                         <option value="1">Mesa 1</option>
 
                                         <option value="2">Mesa 2</option>
 
-                                        <option value="3">Mesa 3</option>
+                                        <option value="2">Mesa 3</option>
 
-                                        <option value="4">Mesa 4</option>
+                                        <option value="2">Mesa 4</option>
 
-                                        <option value="5">Mesa 5</option>
+                                        <option value="2">Mesa 5</option>
 
-                                        <option value="6">Mesa 6</option>
+                                        <option value="2">Mesa 6</option>
                                     </select>
                             </div>
                         </div>

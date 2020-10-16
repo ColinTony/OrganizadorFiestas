@@ -49,8 +49,15 @@ class ManejoDB
 	}
 	public function nuevoInvitado($inv)
 	{
-		$this->sql = "call crearInvitado(?,?,?,?,?,?)";
-		$sqlExc = $this->db->query($this->sql,[$inv['idEvento'],$inv['idUsuario'],$inv['nombre'],$inv['apeP'],$inv['apeM'],$inv['correo']]);
+		$this->sql = "call crearInvitado(?,?,?,?,?,?,?)";
+		$sqlExc = $this->db->query($this->sql,[$inv['idEvento'],$inv['idUsuario'],$inv['numMesa'],$inv['nombre'],$inv['apeP'],$inv['apeM'],$inv['correo']]);
+		$result = $sqlExc->getResultArray();
+		return $result;	
+	}
+	public function cupoMesa($mesa)
+	{
+		$this->sql = "select count(*) as num from invitados where numMesa = ?";
+		$sqlExc = $this->db->query($this->sql,$mesa);
 		$result = $sqlExc->getResultArray();
 		return $result;	
 	}

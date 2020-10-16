@@ -317,9 +317,10 @@ class Dashboard extends BaseController
 					'min_length'=>'Tu apellido debe contener al menos 3 caracteres',
 					'max_length'=>'Tu apelllido no puede contener mas de 20 caracteres'
 				]],
-				'mesa' => ['rules'=>'required|numeric','errors'=>[
+				'mesa' => ['rules'=>'required|numeric|validar_cupo[mesa]','errors'=>[
 					'required'=>'Selecciona una mesa',
-					'numeric' => 'Selecciona una mesa'
+					'numeric' => 'Selecciona una mesa',
+					'validar_cupo' => 'La mesa solo puede tener 8 invitados'
 				]],
 				'email' => ['rules'=>'required|min_length[6]|max_length[50]|valid_email','errors'=>[
 					'required'=>'Escribe un correo electronico',
@@ -337,17 +338,17 @@ class Dashboard extends BaseController
 			{
 				// guardamos el usuarios en la base de datos
 				$invitado = new InvitadoModel();
-				$newData=[
+				$invitado=[
 					'idEvento' => $this->request->getPost('idEvento'),
 					'idUsuario' => session()->get('idUsuario'),
 					'nombre' => $this->request->getPost('nombre'),
 					'apeP' => $this->request->getPost('apeP'),
 					'apeM' => $this->request->getPost('apeM'),
 					'correo' => $this->request->getPost('email'),
-					'idMesa' => $this->request->getPost('mesa')
+					'numMesa' => $this->request->getPost('mesa')
 				];
-				/// creando la sesion
-				return redirect()->to('/dashboard/eventos/invitados/'.$newData['idEvento']);
+				$manejador->nuevoInvitado($invitado);
+				return redirect()->to('/dashboard/eventos/invitados/'.$invitado['idEvento']);
 			}
 			$data['user'] = $model->where('idUsuario',session()->get('idUsuario'))->first();
 			$result = $manejador->getInvitados($this->request->getPost('idEvento'),$data['user']['idUsuario']);
