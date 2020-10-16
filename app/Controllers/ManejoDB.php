@@ -40,6 +40,20 @@ class ManejoDB
 		$result = $sqlExc->getResultArray();
 		return $result;	
 	}
+	public function getInvitados($idEv,$idUsu)
+	{
+		$this->sql = "call verInvitados(?,?)";
+		$sqlExc = $this->db->query($this->sql, [$idEv,$idUsu]);
+		$result = $sqlExc->getResultArray();
+		return $result;
+	}
+	public function nuevoInvitado($inv)
+	{
+		$this->sql = "call crearInvitado(?,?,?,?,?,?)";
+		$sqlExc = $this->db->query($this->sql,[$inv['idEvento'],$inv['idUsuario'],$inv['nombre'],$inv['apeP'],$inv['apeM'],$inv['correo']]);
+		$result = $sqlExc->getResultArray();
+		return $result;	
+	}
 }
 
 
