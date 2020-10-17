@@ -45,6 +45,7 @@ $routes->add('/dashboard/eventos/modificar/(:num)','Dashboard::modificarEvento/$
 $routes->add('/dashboard/eventos/invitados/(:num)','Dashboard::invitados/$1',['filter' => 'auth']);
 $routes->post('/dashboard/modificar_evento','Dashboard::modificarEv',['filter' => 'auth']);
 $routes->post('/dashboard/nuevo_invitado','Dashboard::nuevoInvitado',['filter' => 'auth']);
+$routes->post('/dashboard/pdf','Dashboard::generate_pdf',['filter' => 'auth']);
 /**
  * --------------------------------------------------------------------
  * Additional Routing

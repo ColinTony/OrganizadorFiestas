@@ -61,6 +61,13 @@ class ManejoDB
 		$result = $sqlExc->getResultArray();
 		return $result;	
 	}
+	public function getInvMesa($mesa)
+	{
+		$this->sql = "select * from invitados where numMesa = ?";
+		$sqlExc = $this->db->query($this->sql,$mesa);
+		$result = $sqlExc->getResultArray();
+		return $result;	
+	}
 }
 
 

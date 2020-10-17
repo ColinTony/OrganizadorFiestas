@@ -4,6 +4,7 @@ use App\Models\UsuarioModel;
 use App\Models\InvitadoModel;
 use App\Models\EventoModel;
 use App\Controllers\ManejoDB;
+use App\Libraries\PdfGen;
 
 class Dashboard extends BaseController
 {
@@ -189,10 +190,23 @@ class Dashboard extends BaseController
 		$model = new UsuarioModel();
 		$evento = new EventoModel();
 		$manejador = new ManejoDB();
-
+		helper(['form']);
 		$data['user'] = $model->where('idUsuario',session()->get('idUsuario'))->first();
 		$result = $manejador->getEventosEsp($data['user']['idUsuario'],$id);
 		$data['evento'] = $result;
+		$result = $manejador->getInvMesa(1);
+		$data['mesa1'] = $result;
+		$result = $manejador->getInvMesa(2);
+		$data['mesa2'] = $result;;
+		$result = $manejador->getInvMesa(3);
+		$data['mesa3'] = $result;;
+		$result = $manejador->getInvMesa(4);
+		$data['mesa4'] = $result;
+		$result = $manejador->getInvMesa(5);
+		$data['mesa5'] = $result;
+		$result = $manejador->getInvMesa(6);
+		$data['mesa6'] = $result;
+
 
 		echo view('templates/header',$data);
 		echo view('ver_evento');
@@ -212,6 +226,45 @@ class Dashboard extends BaseController
 		echo view('editar_evento');
 		echo view('templates/footer');
 	}
+
+	public function generate_pdf()
+	{
+		$model = new UsuarioModel();
+		$evento = new EventoModel();
+		$manejador = new ManejoDB();
+		helper(['form']);
+		$data['user'] = $model->where('idUsuario',session()->get('idUsuario'))->first();
+		$result = $manejador->getEventosEsp($data['user']['idUsuario'],$this->request->getVar('idEvento'));
+		$data['evento'] = $result;
+		$result = $manejador->getInvMesa(1);
+		$data['mesa1'] = $result;
+		$result = $manejador->getInvMesa(2);
+		$data['mesa2'] = $result;;
+		$result = $manejador->getInvMesa(3);
+		$data['mesa3'] = $result;;
+		$result = $manejador->getInvMesa(4);
+		$data['mesa4'] = $result;
+		$result = $manejador->getInvMesa(5);
+		$data['mesa5'] = $result;
+		$result = $manejador->getInvMesa(6);
+		$data['mesa6'] = $result;
+
+		if($this->request->getMethod() == 'post')
+		{
+			$pdf = new PdfGen();
+			$html = view('ver_evento',$data);
+			$filename = 'evento_info';
+
+			$pdf->generate($html,$filename,true,'Letter');
+
+			return redirect()->to('/dashboard/eventos');
+		}
+		echo view('templates/header');
+		echo view('ver_evento',$data);
+		echo view('templates/footer');
+		return redirect()->to('/');
+	}
+	
 	public function modificarEv()
 	{
 		$data = [];
