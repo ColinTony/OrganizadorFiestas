@@ -10,11 +10,14 @@ class PdfGen{
 	public function generate($html, $filename='', $stream=TRUE, $paper = 'A4', $orientation = "portrait")
   	{
 	    $dompdf = new DOMPDF();
+	    $dompdf->set_base_path('');
+	    $html = $html.'/public';
 	    $dompdf->loadHtml($html);
+
 	    $dompdf->setPaper($paper, $orientation);
 	    $dompdf->render();
 		if ($stream)
-			$dompdf->stream($filename.".pdf", array("Attachment" => 0));
+			$dompdf->stream($filename.".pdf", array("Attachment" => 1));
 		else 
 			return $dompdf->output();
 	}

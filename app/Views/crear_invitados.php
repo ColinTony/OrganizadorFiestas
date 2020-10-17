@@ -43,6 +43,8 @@
                     <hr>
                     <form class="needs-validation" action="/dashboard/nuevo_invitado" method="post">
                         <input type="hidden" class="form-control" name="idEvento" id="idEvento" placeholder="idEvento" value="<?= set_value("idEvento",$idEvento) ?>" required>
+                        <input type="hidden" class="form-control" name="idUsuario" id="idUsuario" placeholder="idUsuario" value="<?= set_value("idUsuario",$user['idUsuario']) ?>" required>
+
                         <div class="row">
                             <div class="col">
                                     <label for="nombre">Nombre</label>
@@ -67,13 +69,13 @@
 
                                         <option value="2">Mesa 2</option>
 
-                                        <option value="2">Mesa 3</option>
+                                        <option value="3">Mesa 3</option>
 
-                                        <option value="2">Mesa 4</option>
+                                        <option value="4">Mesa 4</option>
 
-                                        <option value="2">Mesa 5</option>
+                                        <option value="5">Mesa 5</option>
 
-                                        <option value="2">Mesa 6</option>
+                                        <option value="6">Mesa 6</option>
                                     </select>
                             </div>
                         </div>

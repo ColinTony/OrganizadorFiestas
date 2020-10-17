@@ -194,17 +194,17 @@ class Dashboard extends BaseController
 		$data['user'] = $model->where('idUsuario',session()->get('idUsuario'))->first();
 		$result = $manejador->getEventosEsp($data['user']['idUsuario'],$id);
 		$data['evento'] = $result;
-		$result = $manejador->getInvMesa(1);
+		$result = $manejador->getInvMesa(1,session()->get('idUsuario'));
 		$data['mesa1'] = $result;
-		$result = $manejador->getInvMesa(2);
+		$result = $manejador->getInvMesa(2,session()->get('idUsuario'));
 		$data['mesa2'] = $result;;
-		$result = $manejador->getInvMesa(3);
+		$result = $manejador->getInvMesa(3,session()->get('idUsuario'));
 		$data['mesa3'] = $result;;
-		$result = $manejador->getInvMesa(4);
+		$result = $manejador->getInvMesa(4,session()->get('idUsuario'));
 		$data['mesa4'] = $result;
-		$result = $manejador->getInvMesa(5);
+		$result = $manejador->getInvMesa(5,session()->get('idUsuario'));
 		$data['mesa5'] = $result;
-		$result = $manejador->getInvMesa(6);
+		$result = $manejador->getInvMesa(6,session()->get('idUsuario'));
 		$data['mesa6'] = $result;
 
 
@@ -236,23 +236,25 @@ class Dashboard extends BaseController
 		$data['user'] = $model->where('idUsuario',session()->get('idUsuario'))->first();
 		$result = $manejador->getEventosEsp($data['user']['idUsuario'],$this->request->getVar('idEvento'));
 		$data['evento'] = $result;
-		$result = $manejador->getInvMesa(1);
+		$result = $manejador->getInvMesa(1,session()->get('idUsuario'));
 		$data['mesa1'] = $result;
-		$result = $manejador->getInvMesa(2);
+		$result = $manejador->getInvMesa(2,session()->get('idUsuario'));
 		$data['mesa2'] = $result;;
-		$result = $manejador->getInvMesa(3);
+		$result = $manejador->getInvMesa(3,session()->get('idUsuario'));
 		$data['mesa3'] = $result;;
-		$result = $manejador->getInvMesa(4);
+		$result = $manejador->getInvMesa(4,session()->get('idUsuario'));
 		$data['mesa4'] = $result;
-		$result = $manejador->getInvMesa(5);
+		$result = $manejador->getInvMesa(5,session()->get('idUsuario'));
 		$data['mesa5'] = $result;
-		$result = $manejador->getInvMesa(6);
+		$result = $manejador->getInvMesa(6,session()->get('idUsuario'));
 		$data['mesa6'] = $result;
 
 		if($this->request->getMethod() == 'post')
 		{
 			$pdf = new PdfGen();
-			$html = view('ver_evento',$data);
+
+			$html = view('pdfGen_evento',$data);
+
 			$filename = 'evento_info';
 
 			$pdf->generate($html,$filename,true,'Letter');
@@ -355,6 +357,7 @@ class Dashboard extends BaseController
 			// validamos los datos
 			$reglas =
 			[
+				'idUsuario' => ['rules'=>'required'],
 				'nombre' => ['rules' =>'required|min_length[3]|max_length[20]','errors'=>[
 					'required' => 'El campo nombre no puede estar vacio',
 					'min_length'=>'El campo nombre no puede tener menos de 3 caracteres',
@@ -370,7 +373,7 @@ class Dashboard extends BaseController
 					'min_length'=>'Tu apellido debe contener al menos 3 caracteres',
 					'max_length'=>'Tu apelllido no puede contener mas de 20 caracteres'
 				]],
-				'mesa' => ['rules'=>'required|numeric|validar_cupo[mesa]','errors'=>[
+				'mesa' => ['rules'=>'required|numeric|validar_cupo[mesa,idUsuario]','errors'=>[
 					'required'=>'Selecciona una mesa',
 					'numeric' => 'Selecciona una mesa',
 					'validar_cupo' => 'La mesa solo puede tener 8 invitados'

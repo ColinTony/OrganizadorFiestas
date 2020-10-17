@@ -54,17 +54,17 @@ class ManejoDB
 		$result = $sqlExc->getResultArray();
 		return $result;	
 	}
-	public function cupoMesa($mesa)
+	public function cupoMesa($mesa,$idUsu)
 	{
-		$this->sql = "select count(*) as num from invitados where numMesa = ?";
-		$sqlExc = $this->db->query($this->sql,$mesa);
+		$this->sql = "select count(*) as num from invitados where numMesa = ? and invitados.idUsuario = ?";
+		$sqlExc = $this->db->query($this->sql,[$mesa,$idUsu]);
 		$result = $sqlExc->getResultArray();
 		return $result;	
 	}
-	public function getInvMesa($mesa)
+	public function getInvMesa($mesa,$idUsu)
 	{
-		$this->sql = "select * from invitados where numMesa = ?";
-		$sqlExc = $this->db->query($this->sql,$mesa);
+		$this->sql = "select * from invitados where numMesa = ? and invitados.idUsuario=?";
+		$sqlExc = $this->db->query($this->sql,[$mesa,$idUsu]);
 		$result = $sqlExc->getResultArray();
 		return $result;	
 	}
