@@ -86,7 +86,7 @@
                                         <button type="submit" id="crear" name="crear" disabled="true" class="btn btn-primary">Guardar cambios</button>
                                     </div>
                                     <div class="col-12 col-sm-8 text-right">
-                                        <a class="btn btn-danger" href="/dashboard">Cancelar</a>
+                                        <a class="btn btn-danger" href="/dashboard/eventos">Cancelar</a>
                                     </div>
                                 </div>
                             </form>
