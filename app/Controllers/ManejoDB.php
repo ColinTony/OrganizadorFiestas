@@ -75,6 +75,36 @@ class ManejoDB
 		$result = $sqlExc->getResultArray();
 		return $result;
 	}
+	public function editarInvitado($idInv)
+	{
+		$this->sql = "call modificarInvitado(?,?,?,?,?,?)";
+		$sqlExc = $this->db->query($this->sql,[$idInv['idInvitado'],$idInv['numMesa'],$idInv['nombre'],$idInv['apeP'],$idInv['apeM'],$idInv['correo']]);
+		$result = $sqlExc->getResultArray();
+		return $result;
+	}
+
+	// funcniones para eliminar
+	public function eliminarInv($idEvento,$idInv)
+	{
+		$this->sql = "call eliminarInvitado(?,?)";
+		$sqlExc = $this->db->query($this->sql,[$idEvento,$idInv]);
+		$result = $sqlExc->getResultArray();
+		return $result;
+	}
+	public function eliminarEvento($idUsuario,$idEvento)
+	{
+		$this->sql = "call eliminarEvento(?,?)";
+		$sqlExc = $this->db->query($this->sql,[$idUsuario,$idEvento]);
+		$result = $sqlExc->getResultArray();
+		return $result;
+	}
+	public function eliminarCuenta($idUsuario)
+	{
+		$this->sql = "delete from usuarios where usuarios.idUsuario = ?";
+		$sqlExc = $this->db->query($this->sql,$idUsuario);
+		$result = $sqlExc->getResultArray();
+		return $result;
+	}
 }
 
 

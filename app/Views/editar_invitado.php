@@ -1,52 +1,34 @@
-<div id="layoutSidenav_content">
+ <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid">
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Error</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <h1>Eliga un horario entre 9:00 hrs y 23:00 hrs
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
-                  </div>
-                </div>
-              </div>
-            </div>
              <div class="container-fluid">
-                    <h3>Modificar invitado</h3>
+                    <h3>Editar invitado</h3>
                     <hr>
-                    <form class="needs-validation" action="/dashboard/modificar_invitado" method="post">
-                        <input type="hidden" class="form-control" name="idEvento" id="idEvento" placeholder="idEvento" value="<?= set_value("idEvento",$idEvento) ?>" required>
+                    <form class="needs-validation" action="/dashboard/invitados/modificar/<?=$invitado['idInvitado'].'/'.$invitado['idEvento']?>" method="post">
+                        <input type="hidden" class="form-control" name="idEvento" id="idEvento" placeholder="idEvento" value="<?= set_value("idEvento",$invitado['idEvento']) ?>" required>
                         <input type="hidden" class="form-control" name="idUsuario" id="idUsuario" placeholder="idUsuario" value="<?= set_value("idUsuario",$user['idUsuario']) ?>" required>
 
                         <div class="row">
                             <div class="col">
                                     <label for="nombre">Nombre</label>
-                                    <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre(s) del invitado" value="<?= set_value("nombre") ?>" required>
+                                    <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre(s) del invitado" value="<?= set_value("nombre",$invitado['nombre']) ?>" required>
                             </div>
                             <div class="col">
                                     <label for="apeP">Apellido P.</label>
-                                    <input type="text" class="form-control" name="apeP" id="apeP" placeholder="Apellido Paterno." value="<?= set_value("apeP") ?>" required>
+                                    <input type="text" class="form-control" name="apeP" id="apeP" placeholder="Apellido Paterno." value="<?= set_value("apeP",$invitado['apeP']) ?>" required>
                             </div>
                             <div class="col">
                                     <label for="apeM">Apellido M.</label>
-                                    <input type="text" class="form-control" name="apeM" id="apeM" placeholder="Apellido Materno." value="<?= set_value("apeM") ?>" required>
+                                    <input type="text" class="form-control" name="apeM" id="apeM" placeholder="Apellido Materno." value="<?= set_value("apeM",$invitado['apeM']) ?>" required>
                             </div>
                             <div class="col">
                                     <label for="email">Email</label>
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="mailito@dominio.com" value="<?= set_value("email") ?>" required>
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="mailito@dominio.com" value="<?= set_value("email",$invitado['correo']) ?>" required>
                             </div>
                             <div class="col">
                                     <label for="mesa">Mesa</label>
                                     <select id="mesa" id='mesa' name="mesa" class="form-control" value="<?= set_value("mesa")?>">
+                                        <option value="<?php $invitado['numMesa'] ?>"><?= $invitado['numMesa']?> </option>
                                         <option value="1">Mesa 1</option>
 
                                         <option value="2">Mesa 2</option>
@@ -74,7 +56,7 @@
                                 <button type="submit" class="btn btn-primary">Guardar</button>
                             </div>
                             <div class="col-12 col-sm-1">
-                                <a class="btn btn-danger" href="/">Cancelar</a>
+                                <a class="btn btn-danger" href='/dashboard/eventos/invitados/<?=$invitado['idEvento']?>'>Cancelar</a>
                             </div>
                         </div>
                     </form>

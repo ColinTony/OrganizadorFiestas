@@ -415,5 +415,103 @@ class Dashboard extends BaseController
 			echo view('templates/footer'); 
 		}
 	}
+	public function modificarInv($idInv,$idEvento)
+	{
+		$data = [];
+		$manejador = new ManejoDB();
+		$model = new UsuarioModel();
+		$invitado = new InvitadoModel();
+		$data['user'] = $model->where('idUsuario',session()->get('idUsuario'))->first();
+		helper(['form']);
+
+		if($this->request->getMethod() == 'post')
+		{
+			// registro en la base de datos
+			// validamos los datos
+			$reglas =
+			[
+				'idUsuario' => ['rules'=>'required'],
+				'nombre' => ['rules' =>'required|min_length[3]|max_length[20]','errors'=>[
+					'required' => 'El campo nombre no puede estar vacio',
+					'min_length'=>'El campo nombre no puede tener menos de 3 caracteres',
+					'max_length' =>'El campo nombre no puede tener mas de 20 caracteres'
+				]],
+				'apeP' => ['rules'=>'required|min_length[3]|max_length[20]','errors'=>[
+					'required'=>'No puedes dejar en blanco tu apellido',
+					'min_length'=>'Tu apellido debe contener al menos 3 caracteres',
+					'max_length'=>'Tu apelllido no puede contener mas de 20 caracteres'
+				]],
+				'apeM' => ['rules'=>'required|min_length[3]|max_length[20]','errors'=>[
+					'required'=>'No puedes dejar en blanco tu apellido',
+					'min_length'=>'Tu apellido debe contener al menos 3 caracteres',
+					'max_length'=>'Tu apelllido no puede contener mas de 20 caracteres'
+				]],
+				'mesa' => ['rules'=>'required|numeric|validar_cupo[mesa,idUsuario]','errors'=>[
+					'required'=>'Selecciona una mesa',
+					'numeric' => 'Selecciona una mesa',
+					'validar_cupo' => 'La mesa solo puede tener 8 invitados'
+				]],
+				'email' => ['rules'=>'required|min_length[6]|max_length[50]|valid_email','errors'=>[
+					'required'=>'Escribe un correo electronico',
+					'min_length'=>'Tu correo electronico no es valido debe contener mas de 6 caracteres',
+					'max_length'=>'Escribe un correo electronico valido',
+					'valid_email'=>'Escribe un correo electronico valido'
+				]]
+			];
+
+			if(!$this->validate($reglas))
+			{
+				$data['validation'] = $this->validator;
+			}
+			else
+			{
+				$invitado=[
+					'idInvitado' => $idInv,
+					'idEvento' => $this->request->getPost('idEvento'),
+					'idUsuario' => session()->get('idUsuario'),
+					'nombre' => $this->request->getPost('nombre'),
+					'apeP' => $this->request->getPost('apeP'),
+					'apeM' => $this->request->getPost('apeM'),
+					'correo' => $this->request->getPost('email'),
+					'numMesa' => $this->request->getPost('mesa')
+				];
+				$manejador->editarInvitado($invitado);
+				return redirect()->to('/dashboard/eventos/invitados/'.$invitado['idEvento']);
+			}
+			$data['user'] = $model->where('idUsuario',session()->get('idUsuario'))->first();
+			$data['invitado'] = $invitado->where('idInvitado',$idInv)->first();
+			echo view('templates/header',$data);
+			echo view('editar_invitado');
+			echo view('templates/footer');
+		} 
+
+		if($this->request->getMethod() == 'get')
+		{
+			$data['user'] = $model->where('idUsuario',session()->get('idUsuario'))->first();
+			$data['invitado'] = $invitado->where('idInvitado',$idInv)->first();
+			echo view('templates/header',$data);
+			echo view('editar_invitado');
+			echo view('templates/footer');
+		}
+	}
+	public function eliminarInv($idInv,$idEvento)
+	{
+		$manejador = new ManejoDB();
+		$result = $manejador->eliminarInv($idEvento,$idInv);
+		return redirect()->to('/dashboard/eventos/invitados/'.$idEvento);
+	}
+	public function eliminarEvento($idEvento)
+	{
+		$manejador = new ManejoDB();
+		$result = $manejador->eliminarEvento(session()->get('idUsuario'),$idEvento);
+		return redirect()->to('/dashboard/eventos');
+	}
+	public function eliminarCuenta()
+	{
+		$manejador = new ManejoDB();
+		$result = $manejador->eliminarCuenta(session()->get('idUsuario'));
+		session()->destroy();
+		return redirect()->to('/');
+	}
 }
 ?>

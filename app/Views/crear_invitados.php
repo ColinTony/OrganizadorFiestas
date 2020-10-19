@@ -18,6 +18,7 @@
                                     <th>Apellido P.</th>
                                     <th>Apellido M.</th>
                                     <th>Correo</th>
+                                    <th>Modificar</th>
                                     <th>Eliminar</th>
                                 </tr>
                             </thead>
@@ -29,7 +30,10 @@
                                         <td><?php echo $row['apeP']?></td>
                                         <td><?php echo $row['apeM']?></td>
                                         <td><?php echo $row['correo']?></td>
-                                        <td><a href="<?='/dashboard/invitados/elim/'.$row['idInvitado']?>"><button type="button" id="valor" class="btn btn-outline-danger">Eliminar</button></a></td>
+                                        <td><a href="<?='/dashboard/invitados/modificar/'.$row['idInvitado'].'/'.$idEvento?>">
+                                            <button type="button" id="valor" class="btn btn-outline-info">Modificar</button></a></td>
+                                        <td><a href="<?='/dashboard/invitados/elim/'.$row['idInvitado'].'/'.$idEvento?>">
+                                            <button type="button" id="valor" class="btn btn-outline-danger">Eliminar</button></a></td>
                                     </tr>
                                 <?php endforeach; ?> 
                             </tbody>

@@ -66,6 +66,9 @@
                                     <div class="col-12 col-sm-8 text-right">
                                         <a class="btn btn-danger" href="/dashboard">Cancelar</a>
                                     </div>
+                                    <div class="col-12 col-sm-8 text-right">
+                                        <a class="btn btn-danger" href="/dashboard/eliminar">Eliminar Cuenta</a>
+                                    </div>
                                 </div>
                             </form>
                         </div>

@@ -36,6 +36,7 @@ $routes->match(['get','post'],'/login', 'Home::login',['filter' => 'noauth']);
 
 // DashBoard
 $routes->get('/dashboard/cerrar', 'Home::cerrar');
+$routes->get('/dashboard/eliminar', 'Dashboard::eliminarCuenta');
 $routes->get('dashboard','Dashboard::index',['filter' => 'auth']);
 $routes->match(['get','post'],'/dashboard/perfil', 'Dashboard::perfil',['filter' => 'auth']);
 $routes->get('/dashboard/eventos','Dashboard::eventos',['filter' => 'auth']);
@@ -46,6 +47,9 @@ $routes->add('/dashboard/eventos/invitados/(:num)','Dashboard::invitados/$1',['f
 $routes->post('/dashboard/modificar_evento','Dashboard::modificarEv',['filter' => 'auth']);
 $routes->post('/dashboard/nuevo_invitado','Dashboard::nuevoInvitado',['filter' => 'auth']);
 $routes->post('/dashboard/pdf','Dashboard::generate_pdf',['filter' => 'auth']);
+$routes->add('/dashboard/invitados/elim/(:num)/(:num)','Dashboard::eliminarInv/$1/$2',['filter' => 'auth']);
+$routes->add('/dashboard/invitados/modificar/(:num)/(:num)','Dashboard::modificarInv/$1/$2',['filter' => 'auth']);
+$routes->add('/dashboard/eventos/elim/(:num)','Dashboard::eliminarEvento/$1',['filter' => 'auth']);
 /**
  * --------------------------------------------------------------------
  * Additional Routing

@@ -21,7 +21,8 @@
                                     <th>Ver</th>
                                     <th>Modificar</th>
                                     <th>Invitados</th>
-                                    <th>Organizar</th>
+                                    <th>Organizar</th><
+                                    <th>Eliminar</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -36,6 +37,7 @@
                                         <td><a href="<?='/dashboard/eventos/modificar/'.$row['idEvento']?>"><button type="button" class="btn btn-outline-primary">Modificar</button></a></td>
                                         <td><a href="<?='/dashboard/eventos/invitados/'.$row['idEvento']?>"><button type="button" class="btn btn-outline-warning">Invitados</button></a></td>
                                         <td><a href="<?='/dashboard/eventos/organizar/'.$row['idEvento']?>"><button type="button" class="btn btn-outline-secondary">Organizar</button></a></td>
+                                        <td><a href="<?='/dashboard/eventos/elim/'.$row['idEvento']?>"><button type="button" class="btn btn-outline-danger">Eliminar</button></a></td>
                                     </tr>
                                 <?php endforeach; ?> 
                             </tbody>
