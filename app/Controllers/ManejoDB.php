@@ -68,6 +68,13 @@ class ManejoDB
 		$result = $sqlExc->getResultArray();
 		return $result;	
 	}
+	public function getInvitado($idInv,$idUsu)
+	{
+		$this->sql = "select * from invitados where idInvitado = ? and invitados.idUsuario=?";
+		$sqlExc = $this->db->query($this->sql,[$idInv,$idUsu]);
+		$result = $sqlExc->getResultArray();
+		return $result;
+	}
 }
 
 
