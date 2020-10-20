@@ -61,10 +61,10 @@ class ManejoDB
 		$result = $sqlExc->getResultArray();
 		return $result;	
 	}
-	public function getInvMesa($mesa,$idUsu)
+	public function getInvMesa($mesa,$idUsu,$idEvento)
 	{
-		$this->sql = "select * from invitados where numMesa = ? and invitados.idUsuario=?";
-		$sqlExc = $this->db->query($this->sql,[$mesa,$idUsu]);
+		$this->sql = "select * from invitados where numMesa = ? and invitados.idUsuario=? and invitados.idEvento = ?";
+		$sqlExc = $this->db->query($this->sql,[$mesa,$idUsu,$idEvento]);
 		$result = $sqlExc->getResultArray();
 		return $result;	
 	}
@@ -94,7 +94,7 @@ class ManejoDB
 	public function eliminarEvento($idUsuario,$idEvento)
 	{
 		$this->sql = "call eliminarEvento(?,?)";
-		$sqlExc = $this->db->query($this->sql,[$idUsuario,$idEvento]);
+		$sqlExc = $this->db->query($this->sql,[$idEvento,$idUsuario]);
 		$result = $sqlExc->getResultArray();
 		return $result;
 	}

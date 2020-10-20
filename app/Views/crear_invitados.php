@@ -96,7 +96,7 @@
                                 <button type="submit" class="btn btn-primary">Registrar</button>
                             </div>
                             <div class="col-12 col-sm-1">
-                                <a class="btn btn-danger" href="/">Cancelar</a>
+                                <a class="btn btn-danger" href="/dashboard/eventos">Cancelar</a>
                             </div>
                         </div>
                     </form>
