@@ -14,14 +14,13 @@
     <title>Fiestas menu</title>
     <link href="/css/styles.css" rel="stylesheet" />
     <link href="/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js" type="text/javascript"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" type="text/javascript"></script>
+    
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="/js/konva.min.js"></script>
     <script src="/js/all.min.js" crossorigin="anonymous"></script>
-    <script src="/js/jquery-3.5.1.min.js"></script>
-    <script src="/js/jquery-ui.min.js"></script>
     <script src="/js/bootstrap.bundle.min.js"></script>
     <script src="/js/miJavascript.js"></script>
-
+    <script src="/js/drage.js"></script>
 </head>
 
 <body class="sb-nav-fixed">
