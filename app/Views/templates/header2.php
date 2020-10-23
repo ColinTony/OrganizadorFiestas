@@ -20,7 +20,7 @@
     <script src="/js/all.min.js" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js"></script>
     <script src="/js/miJavascript.js"></script>
-    <script src="/js/drage.js"></script>
+    <script src="/js/drag.js"></script>
 </head>
 
 <body class="sb-nav-fixed">
