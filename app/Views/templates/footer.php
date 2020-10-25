@@ -18,7 +18,6 @@
 <script src="/js/jquery.dataTables.min.js"></script>
 <script src="/js/dataTables.bootstrap4.min.js"></script>
 <script src="/assets/demo/datatables-demo.js"></script>
-<script src="/js/jquery-ui.min.js"></script>
 
 </body>
 

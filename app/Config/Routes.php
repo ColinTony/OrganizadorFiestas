@@ -51,6 +51,7 @@ $routes->add('/dashboard/invitados/elim/(:num)/(:num)','Dashboard::eliminarInv/$
 $routes->add('/dashboard/invitados/modificar/(:num)/(:num)','Dashboard::modificarInv/$1/$2',['filter' => 'auth']);
 $routes->add('/dashboard/eventos/elim/(:num)','Dashboard::eliminarEvento/$1',['filter' => 'auth']);
 $routes->add('/dashboard/eventos/organizar/(:num)','Dashboard::organizar/$1',['filter' => 'auth']);
+$routes->add('/dashboard/ajax/mesa/(:num)/(:num)','Dashboard::peticionAjax/$1/$2',['filter' => 'auth']);
 /**
  * --------------------------------------------------------------------
  * Additional Routing

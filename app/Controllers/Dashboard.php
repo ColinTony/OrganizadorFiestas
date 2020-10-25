@@ -522,27 +522,18 @@ class Dashboard extends BaseController
 		$manejador = new ManejoDB();
 		helper(['form']);
 		$data['user'] = $model->where('idUsuario',session()->get('idUsuario'))->first();
-		$result = $manejador->getEventosEsp($data['user']['idUsuario'],$idEvento);
-		$data['evento'] = $result;
-		$result = $manejador->getInvMesa(1,session()->get('idUsuario'),$idEvento);
-		$data['mesa1'] = $result;
-		$result = $manejador->getInvMesa(2,session()->get('idUsuario'),$idEvento);
-		$data['mesa2'] = $result;;
-		$result = $manejador->getInvMesa(3,session()->get('idUsuario'),$idEvento);
-		$data['mesa3'] = $result;;
-		$result = $manejador->getInvMesa(4,session()->get('idUsuario'),$idEvento);
-		$data['mesa4'] = $result;
-		$result = $manejador->getInvMesa(5,session()->get('idUsuario'),$idEvento);
-		$data['mesa5'] = $result;
-		$result = $manejador->getInvMesa(6,session()->get('idUsuario'),$idEvento);
-		$data['mesa6'] = $result;
 		$data['evento'] = $evento->where('idEvento',$idEvento)->first();
 
 		echo view('templates/header2',$data);
 		echo view('drag_and_drop');
 		echo view('templates/footer2');
-
-
+	}
+	public function peticionAjax($numeroMesa,$idEvento)
+	{
+		$manejador = new ManejoDB();
+		$result = $manejador->getInvMesa($numeroMesa,session()->get('idUsuario'),$idEvento);
+		$data['invitados'] = $result;
+		return $this->response->setJSON($data);
 	}
 
 }
