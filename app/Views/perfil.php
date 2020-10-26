@@ -60,16 +60,15 @@
                                 <?php endif;?> 
                                 
                                 <div class="row">
-                                    <div class="col-12 col-sm-4">
+                                    <div class="col-6 col-sm-6">
                                         <button type="submit" class="btn btn-primary">Guardar cambios</button>
                                     </div>
-                                    <div class="col-12 col-sm-8 text-right">
+                                    <div class="col-6 col-sm-6 text-right">
                                         <a class="btn btn-danger" href="/dashboard">Cancelar</a>
                                     </div>
-                                    <div class="col-12 col-sm-8 text-right">
-                                        <a class="btn btn-danger" href="/dashboard/eliminar">Eliminar Cuenta</a>
-                                    </div>
                                 </div>
+                                <br>
+                                <a class="btn btn-danger" href="/dashboard/eliminar">Eliminar Cuenta</a>
                             </form>
                         </div>
                     </div>

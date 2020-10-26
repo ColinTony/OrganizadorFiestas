@@ -9,8 +9,8 @@
                     Eventos
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive table-hover">
-                        <table class="table table-bordered" id="dataTable" cellspacing="0">
+                    <div class="table-responsive table-hover container-fluid">
+                        <table class="table table-bordered table-responsive" id="dataTable">
                             <thead>
                                 <tr>
                                     <th>Folio</th>
@@ -21,7 +21,7 @@
                                     <th>Ver</th>
                                     <th>Modificar</th>
                                     <th>Invitados</th>
-                                    <th>Organizar</th><
+                                    <th>Organizar</th>
                                     <th>Eliminar</th>
                                 </tr>
                             </thead>

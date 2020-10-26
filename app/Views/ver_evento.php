@@ -6,7 +6,7 @@
             <h2 class="mt-4 text-success text-center"><?= 'Fecha: '.$evento['0']['fecha'].' -- Hora:'.$evento['0']['hora']?></h2>
             <h2 class="mt-4 text-primary text-center"><?= 'Menu: '.$evento['0']['menu']?></h1></h2>
 
-            
+            <div class="table-responsive">
             <table class="table table-bordered">
 			  <thead>
 			    <tr>
@@ -28,7 +28,7 @@
 	                </tr>
                 <?php endforeach; ?> 
 			    
-			    <tr class="text-center">
+			    <tr class="text-left">
 			      <td colspan="5"><h1>Mesa 2</h1></td>
 			    </tr>
 			    <?php foreach ($mesa2 as $row): ?>
@@ -40,7 +40,7 @@
 	                    <td><?php echo $row['correo']?></td>
 	                </tr>
                 <?php endforeach; ?>
-                <tr class="text-center">
+                <tr class="text-left">
 			      <td colspan="5"><h1>Mesa 3</h1></td>
 			    </tr>
 			    <?php foreach ($mesa3 as $row): ?>
@@ -52,7 +52,7 @@
 	                    <td><?php echo $row['correo']?></td>
 	                </tr>
                 <?php endforeach; ?>
-			    <tr class="text-center">
+			    <tr class="text-left">
 			      <td colspan="5"><h1>Mesa 4</h1></td>
 			    </tr>
 			    <?php foreach ($mesa4 as $row): ?>
@@ -64,7 +64,7 @@
 	                    <td><?php echo $row['correo']?></td>
 	                </tr>
                 <?php endforeach; ?>
-			    <tr class="text-center">
+			    <tr class="text-left">
 			      <td colspan="5"><h1>Mesa 5</h1></td>
 			    </tr>
 			    <?php foreach ($mesa5 as $row): ?>
@@ -76,7 +76,7 @@
 	                    <td><?php echo $row['correo']?></td>
 	                </tr>
                 <?php endforeach; ?>
-			    <tr class="text-center">
+			    <tr class="text-left">
 			      <td colspan="5"><h1>Mesa 6</h1></td>
 			    </tr>
 			    <?php foreach ($mesa6 as $row): ?>
@@ -101,6 +101,7 @@
                 <div class="col-12 col-sm-8 text-right">
                 	<a class="btn btn-danger" href="/dashboard/eventos">Volver</a>
                	</div>
+            </div>
             </div>
         </div>
     </main>
