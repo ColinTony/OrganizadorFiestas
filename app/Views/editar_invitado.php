@@ -4,7 +4,7 @@
              <div class="container-fluid">
                     <h3>Editar invitado</h3>
                     <hr>
-                    <form class="needs-validation" action="/dashboard/invitados/modificar/<?=$invitado['idInvitado'].'/'.$invitado['idEvento']?>" method="post">
+                    <form class="needs-validation" action="/dashboard/invitados/modificar/<?=$invitado['idInvitado'].'/'.$invitado['idEvento'].'/'.$invitado['numMesa']?>" method="post">
                         <input type="hidden" class="form-control" name="idEvento" id="idEvento" placeholder="idEvento" value="<?= set_value("idEvento",$invitado['idEvento']) ?>" required>
                         <input type="hidden" class="form-control" name="idUsuario" id="idUsuario" placeholder="idUsuario" value="<?= set_value("idUsuario",$user['idUsuario']) ?>" required>
 

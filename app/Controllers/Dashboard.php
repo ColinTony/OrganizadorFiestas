@@ -236,17 +236,17 @@ class Dashboard extends BaseController
 		$data['user'] = $model->where('idUsuario',session()->get('idUsuario'))->first();
 		$result = $manejador->getEventosEsp($data['user']['idUsuario'],$this->request->getVar('idEvento'));
 		$data['evento'] = $result;
-		$result = $manejador->getInvMesa(1,session()->get('idUsuario'));
+		$result = $manejador->getInvMesa(1,session()->get('idUsuario'),$this->request->getVar('idEvento'));
 		$data['mesa1'] = $result;
-		$result = $manejador->getInvMesa(2,session()->get('idUsuario'));
+		$result = $manejador->getInvMesa(2,session()->get('idUsuario'),$this->request->getVar('idEvento'));
 		$data['mesa2'] = $result;;
-		$result = $manejador->getInvMesa(3,session()->get('idUsuario'));
+		$result = $manejador->getInvMesa(3,session()->get('idUsuario'),$this->request->getVar('idEvento'));
 		$data['mesa3'] = $result;;
-		$result = $manejador->getInvMesa(4,session()->get('idUsuario'));
+		$result = $manejador->getInvMesa(4,session()->get('idUsuario'),$this->request->getVar('idEvento'));
 		$data['mesa4'] = $result;
-		$result = $manejador->getInvMesa(5,session()->get('idUsuario'));
+		$result = $manejador->getInvMesa(5,session()->get('idUsuario'),$this->request->getVar('idEvento'));
 		$data['mesa5'] = $result;
-		$result = $manejador->getInvMesa(6,session()->get('idUsuario'));
+		$result = $manejador->getInvMesa(6,session()->get('idUsuario'),$this->request->getVar('idEvento'));
 		$data['mesa6'] = $result;
 
 		if($this->request->getMethod() == 'post')
@@ -373,7 +373,7 @@ class Dashboard extends BaseController
 					'min_length'=>'Tu apellido debe contener al menos 3 caracteres',
 					'max_length'=>'Tu apelllido no puede contener mas de 20 caracteres'
 				]],
-				'mesa' => ['rules'=>'required|numeric|validar_cupo[mesa,idUsuario]','errors'=>[
+				'mesa' => ['rules'=>'required|numeric|validar_cupo[mesa,idUsuario,idEvento]','errors'=>[
 					'required'=>'Selecciona una mesa',
 					'numeric' => 'Selecciona una mesa',
 					'validar_cupo' => 'La mesa solo puede tener 8 invitados'
@@ -415,7 +415,7 @@ class Dashboard extends BaseController
 			echo view('templates/footer'); 
 		}
 	}
-	public function modificarInv($idInv,$idEvento)
+	public function modificarInv($idInv,$idEvento,$mesa)
 	{
 		$data = [];
 		$manejador = new ManejoDB();
@@ -446,11 +446,6 @@ class Dashboard extends BaseController
 					'min_length'=>'Tu apellido debe contener al menos 3 caracteres',
 					'max_length'=>'Tu apelllido no puede contener mas de 20 caracteres'
 				]],
-				'mesa' => ['rules'=>'required|numeric|validar_cupo[mesa,idUsuario]','errors'=>[
-					'required'=>'Selecciona una mesa',
-					'numeric' => 'Selecciona una mesa',
-					'validar_cupo' => 'La mesa solo puede tener 8 invitados'
-				]],
 				'email' => ['rules'=>'required|min_length[6]|max_length[50]|valid_email','errors'=>[
 					'required'=>'Escribe un correo electronico',
 					'min_length'=>'Tu correo electronico no es valido debe contener mas de 6 caracteres',
@@ -458,7 +453,14 @@ class Dashboard extends BaseController
 					'valid_email'=>'Escribe un correo electronico valido'
 				]]
 			];
-
+			if($this->request->getPost('mesa') != $mesa)
+			{
+				$reglas['mesa'] = ['rules'=>'required|numeric|validar_cupo[mesa,idUsuario,idEvento]','errors'=>[
+					'required'=>'Selecciona una mesa',
+					'numeric' => 'Selecciona una mesa',
+					'validar_cupo' => 'La mesa solo puede tener 8 invitados'
+				]];
+			}
 			if(!$this->validate($reglas))
 			{
 				$data['validation'] = $this->validator;

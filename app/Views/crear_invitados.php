@@ -30,7 +30,7 @@
                                         <td><?php echo $row['apeP']?></td>
                                         <td><?php echo $row['apeM']?></td>
                                         <td><?php echo $row['correo']?></td>
-                                        <td><a href="<?='/dashboard/invitados/modificar/'.$row['idInvitado'].'/'.$idEvento?>">
+                                        <td><a href="<?='/dashboard/invitados/modificar/'.$row['idInvitado'].'/'.$idEvento.'/'.$row['numMesa']?>">
                                             <button type="button" id="valor" class="btn btn-outline-info">Modificar</button></a></td>
                                         <td><a href="<?='/dashboard/invitados/elim/'.$row['idInvitado'].'/'.$idEvento?>">
                                             <button type="button" id="valor" class="btn btn-outline-danger">Eliminar</button></a></td>
